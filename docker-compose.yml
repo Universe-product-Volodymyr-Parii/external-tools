@@ -1,16 +1,4 @@
 services:
-  psql:
-    container_name: psql
-    image: postgres:16
-    environment:
-      POSTGRES_DB: "legaltech_test"
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "root"
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./psql:/var/lib/postgresql/data
-
   prometheus:
     image: prom/prometheus
     volumes:
@@ -29,10 +17,8 @@ services:
       - AWS_DEFAULT_REGION=us-east-1
       - AWS_ACCESS_KEY_ID=test
       - AWS_SECRET_ACCESS_KEY=test
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN}
     volumes:
       - "./init-localstack.sh:/etc/localstack/init/ready.d/init-localstack.sh"
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
-
-volumes:
-  psql:

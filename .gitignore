@@ -1,2 +1,5 @@
 /psql
 .idea
+
+volume
+.env
