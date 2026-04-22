@@ -1,6 +1,5 @@
 ## File includes:
 
-- Prometheus
 - Localstack SQS
 
 ## Prerequisites
